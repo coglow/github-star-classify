@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -16,6 +16,7 @@ import {
 	Tooltip,
 	message,
 	ConfigProvider,
+	Spin,
 } from 'antd'
 import {
 	DashboardOutlined,
@@ -31,17 +32,19 @@ import {
 	ThunderboltOutlined,
 } from '@ant-design/icons'
 import { useAppState } from './hooks/useAppState'
-import Dashboard from './components/Dashboard'
-import CategoryView from './components/CategoryView'
-import TimeBasedView from './components/TimeBasedView'
-import SettingsPage from './components/SettingsPage'
 import './App.css'
-import PopularityView from './components/PopularityView'
-import MaturityView from './components/MaturityView'
-import ActivityView from './components/ActivityView'
 import zhCN from 'antd/locale/zh_CN' // 引入中文语言包
 const { Header, Content, Sider } = Layout
 const { Title, Text } = Typography
+
+// 路由级懒加载，各视图在首次访问时再加载
+const Dashboard = lazy(() => import('./components/Dashboard'))
+const CategoryView = lazy(() => import('./components/CategoryView'))
+const TimeBasedView = lazy(() => import('./components/TimeBasedView'))
+const PopularityView = lazy(() => import('./components/PopularityView'))
+const MaturityView = lazy(() => import('./components/MaturityView'))
+const ActivityView = lazy(() => import('./components/ActivityView'))
+const SettingsPage = lazy(() => import('./components/SettingsPage'))
 
 function AppContent() {
 	const navigate = useNavigate()
@@ -370,92 +373,99 @@ function AppContent() {
 							</div>
 						)}
 
-						<Routes>
-							<Route
-								path='/'
-								element={
-									<Dashboard
-										repos={repos}
-										categories={categories}
-										onCategoryClick={handleCategoryClick}
-									/>
-								}
-							/>
-							<Route
-								path='/category/:categoryId'
-								element={
-									<CategoryView
-										categories={categories.filter(
-											(cat) => cat.id === activeTab
-										)}
-										loading={loading}
-										onRefresh={handleRefresh}
-										singleCategory={true}
-									/>
-								}
-							/>
-							<Route
-								path='/time-based'
-								element={
-									<TimeBasedView
-										repos={repos}
-										loading={loading}
-										onRefresh={handleRefresh}
-									/>
-								}
-							/>
-							<Route
-								path='/popularity'
-								element={
-									<PopularityView
-										repos={repos}
-										loading={loading}
-										onRefresh={handleRefresh}
-									/>
-								}
-							/>
-							<Route
-								path='/maturity'
-								element={
-									<MaturityView
-										repos={repos}
-										loading={loading}
-										onRefresh={handleRefresh}
-									/>
-								}
-							/>
-							<Route
-								path='/activity'
-								element={
-									<ActivityView
-										repos={repos}
-										loading={loading}
-										onRefresh={handleRefresh}
-									/>
-								}
-							/>
-							<Route
-								path='/settings'
-								element={
-									<SettingsPage
-										userConfig={userConfig}
-										tags={tags}
-										onUpdateConfig={updateUserConfig}
-										onAddTag={addTag}
-										onUpdateTag={updateTag}
-										onDeleteTag={deleteTag}
-										onAddKeywordRule={addKeywordRule}
-										onUpdateKeywordRule={updateKeywordRule}
-										onDeleteKeywordRule={deleteKeywordRule}
-										onClearAllData={clearAllData}
-										onExportData={exportData}
-										onImportData={importData}
-										onRefreshData={handleRefresh}
-										storageUsage={storageUsage}
-									/>
-								}
-							/>
-						</Routes>
+						<Suspense
+							fallback={
+								<div style={{ textAlign: 'center', padding: '50px 0' }}>
+									<Spin size='large' />
+								</div>
+							}>
+							<Routes>
+								<Route
+									path='/'
+									element={
+										<Dashboard
+											repos={repos}
+											categories={categories}
+											onCategoryClick={handleCategoryClick}
+										/>
+									}
+								/>
+								<Route
+									path='/category/:categoryId'
+									element={
+										<CategoryView
+											categories={categories.filter(
+												(cat) => cat.id === activeTab
+											)}
+											loading={loading}
+											onRefresh={handleRefresh}
+											singleCategory={true}
+										/>
+									}
+								/>
+								<Route
+									path='/time-based'
+									element={
+										<TimeBasedView
+											repos={repos}
+											loading={loading}
+											onRefresh={handleRefresh}
+										/>
+									}
+								/>
+								<Route
+									path='/popularity'
+									element={
+										<PopularityView
+											repos={repos}
+											loading={loading}
+											onRefresh={handleRefresh}
+										/>
+									}
+								/>
+								<Route
+									path='/maturity'
+									element={
+										<MaturityView
+											repos={repos}
+											loading={loading}
+											onRefresh={handleRefresh}
+										/>
+									}
+								/>
+								<Route
+									path='/activity'
+									element={
+										<ActivityView
+											repos={repos}
+											loading={loading}
+											onRefresh={handleRefresh}
+										/>
+									}
+								/>
+								<Route
+									path='/settings'
+									element={
+										<SettingsPage
+											userConfig={userConfig}
+											tags={tags}
+											onUpdateConfig={updateUserConfig}
+											onAddTag={addTag}
+											onUpdateTag={updateTag}
+											onDeleteTag={deleteTag}
+											onAddKeywordRule={addKeywordRule}
+											onUpdateKeywordRule={updateKeywordRule}
+											onDeleteKeywordRule={deleteKeywordRule}
+											onClearAllData={clearAllData}
+											onExportData={exportData}
+											onImportData={importData}
+											onRefreshData={handleRefresh}
+											storageUsage={storageUsage}
+										/>
+									}
+								/>
+							</Routes>
+						</Suspense>
 					</Content>
 				</Layout>
 			</Layout>
