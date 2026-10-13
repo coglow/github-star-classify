@@ -342,7 +342,7 @@ function AppContent() {
 							<Tooltip title='项目信息'>
 								<Button
 									icon={<InfoCircleOutlined />}
-									href='https://github.com/IgnorantCircle/github-star-classify'
+									href='https://github.com/coglow/github-star-classify'
 									target='_blank'
 								/>
 							</Tooltip>

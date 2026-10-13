@@ -18,7 +18,7 @@ export const useAppState = (messageApi: MessageInstance) => {
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState<string | null>(null)
 	const [userConfig, setUserConfig] = useState<UserConfig>({
-		username: 'IgnorantCircle',
+		username: 'coglow',
 		autoClassify: true,
 		keywordRules: [],
 	})
@@ -34,7 +34,7 @@ export const useAppState = (messageApi: MessageInstance) => {
 			try {
 				// 加载用户配置
 				const config = storageService.getUserConfig()
-				if(config.username==="IgnorantCircle"){
+				if(config.username==="coglow"){
 					messageApi.warning('请前往设置中输入你自己的GitHub用户名')
 				}
 				setUserConfig(config)

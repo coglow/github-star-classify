@@ -51,7 +51,7 @@ class StorageService {
 
 		// 返回默认配置
 		return {
-			username: 'IgnorantCircle',
+			username: 'coglow',
 			autoClassify: true,
 			keywordRules: this.ClassifyService.getDefaultKeywordRules(),
 		}

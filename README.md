@@ -1,18 +1,14 @@
 # GitHub Star Classify
  这是一个GitHub star仓库分类管理工具，可以查看自己或者其他GitHub用户的收藏，并且可以根据关键词规则对仓库进行分类。
 
-因为自己的GitHub Star项目很多，每次找都找半天，而且GitHub官方的分类是在太不方便了，所以就想自己写一个可视化分类管理工具，用于管理 GitHub 收藏项目，同时方便自己查看大佬们的收藏项目。
-
-所以就有了这个项目。
-
 ## 🌁 项目截图
-<img src="https://blog-1306207361.cos.ap-guangzhou.myqcloud.com/blog/20250820185957008.webp?imageSlim" alt="项目截图" />
-<img src="https://blog-1306207361.cos.ap-guangzhou.myqcloud.com/blog/20250820185919671.webp?imageSlim" alt="项目截图" />
-<img src="https://blog-1306207361.cos.ap-guangzhou.myqcloud.com/blog/20250820185657040.webp?imageSlim" alt="项目截图" />
+<img src="./assets/screenshot-1.webp" alt="项目截图" />
+<img src="./assets/screenshot-2.webp" alt="项目截图" />
+<img src="./assets/screenshot-3.webp" alt="项目截图" />
 
 ## 📦 项目地址
-- 项目仓库：[https://github.com/IgnorantCircle/github-star-classify](https://github.com/IgnorantCircle/github-star-classify)
-- 在线演示：[http://www.igcricle.top/project/github-star-classify/](http://www.igcricle.top/project/github-star-classify)
+- 项目仓库：[https://github.com/coglow/github-star-classify](https://github.com/coglow/github-star-classify)
+- 在线演示：[https://www.coglow.top/project/github-star-classify/](https://www.coglow.top/project/github-star-classify)
 
 ## ✨ 功能特性
 
