@@ -474,13 +474,8 @@ function AppContent() {
 }
 
 function App() {
-	// 获取部署的子路径前缀
-	const basename = import.meta.env.PROD
-		? import.meta.env.PUBLIC_URL || '/project/github-star-classify/'
-		: '/'
-
 	return (
-		<Router basename={basename}>
+		<Router>
 			<AppContent />
 		</Router>
 	)

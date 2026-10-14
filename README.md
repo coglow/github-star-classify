@@ -8,7 +8,7 @@
 
 ## 📦 项目地址
 - 项目仓库：[https://github.com/coglow/github-star-classify](https://github.com/coglow/github-star-classify)
-- 在线演示：[https://www.coglow.top/project/github-star-classify/](https://www.coglow.top/project/github-star-classify)
+- 在线演示：[https://stars.coglow.top](https://stars.coglow.top)
 
 ## ✨ 功能特性
 
